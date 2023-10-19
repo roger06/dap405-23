@@ -1,3 +1,11 @@
+<?php
+echo '<pre>';
+print_r($_POST);
+echo '</pre>';
+// di  e();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +18,16 @@
 <body>
 
 <?php
-$ticketNumber = $_POST['ticketNum'];
+
+$namesarray = $_POST['name'];
+$ticketNumber = sizeof($namesarray);
+
+echo 'num ' . $ticketNumber;
+
+
+print_r($namesarray);
+
+die;
 
 echo "<h1>Your Tickets:</h1>" . "<div class='spacer'></div>";
 

@@ -1,3 +1,11 @@
+<?php
+echo '<pre>';
+print_r($_POST);
+echo '</pre>';
+// die();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +23,12 @@ $ticketNumber = $_POST["ticketNum"];
 
 echo "Please Enter Ticket Names: <br>";
 
-echo "<form method=\"post\" action=\"ticketForm3.php\">";
+echo "<form method='post' action='ticketForm3.php'>";
 
 for ($x = 1; $x <= $ticketNumber; $x++) {
     echo "<label for = \"name$x\"> Name On Ticket No.$x </label>";
-    echo "<input type=\"text\" name=\"name$x\">";
-    echo "<input type=\"hidden\" name=\"ticketNum\" value=\"$ticketNumber\">";
+    echo "<input type=\"text\" name=\"name[]\">";
+    // echo "<input type=\"hidden\" name=\"ticketNum\" value=\"$ticketNumber\">";
 
     echo "<br>";
 }
