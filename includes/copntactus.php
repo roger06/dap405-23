@@ -2,6 +2,7 @@
 $pagetitle = 'Contact';
 
 require_once('inc/header-inc.php');
+
 ?>
 <main>
 

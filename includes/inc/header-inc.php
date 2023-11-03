@@ -1,19 +1,26 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);    // this 1 / 0
+ini_set('display_startup_errors', 1);
+opcache_reset(); 
+require_once('fns-inc.php');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php 
-        if(isset($pagetitle)) echo $pagetitle;
+       printTitle($pagetitle);
+        ?>
         
-        else echo 'DAP405';
-        
-        ?></title>
+    </title>
     <style>
 
         ul {
 
-            display: flex;
+            /* display: flex; */
             color: blue;
         }
 
