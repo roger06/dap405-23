@@ -28,6 +28,8 @@ $empJson = file_get_contents($empFile);
 
 $empArray = json_decode($empJson, true);
 // echo '<pre>';print_r($empArray);echo '</pre>';
+// die;
+
 
 
 foreach($empArray as $data){
@@ -38,13 +40,17 @@ foreach($empArray as $data){
     $emp->lastName = $data['lastname'] ;
     $emp->salary = $data['salary'] ;
 
-    $emp->showEmployee();
+   // $emp->showEmployee();
 
-    continue;
+    //continue;
 
     
     echo $data['firstname']  .  '  &pound;' . number_format($data['salary'] ,2);   
     $grosssalary = $data['salary'];
+
+    echo "<a href='payslip.php?id=".$data['id']."'>pay slip</a>";
+
+
     determineBand($grosssalary);
 
 
