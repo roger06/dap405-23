@@ -15,12 +15,20 @@ ini_set('display_startup_errors', 1);
 
 function calc_band($salary){
 
-    if ($salary < 10000 ) $band = 1;
+    global $taxarray;
+
+    // $taxarray[0]['minsalary']
+   
+    if ($salary <   $taxarray[0]['maxsalary']) $band = 1;
+
 
     else {
 
-        if ($salary > 10000 AND $salary < 40000) $band = 2;
+        if ($salary > $taxarray[1]['minsalary'] AND $salary < $taxarray[1]['maxsalary']) $band = 2;
+
+       
         elseif  ($salary > 40000 AND $salary < 150000)  $band = 3;
+       
         else  $band = 4;
     }
     
@@ -31,6 +39,8 @@ function calc_band($salary){
 
 
 function calc_tax($salary, $band) {
+    global $taxarray;
+
 
     $netsalary = 0;
     // error checking!
@@ -49,9 +59,9 @@ function calc_tax($salary, $band) {
         // deduct 10000 from salary
         // the remainder is taxed at 20%
 
-        $taxable_salary = $salary - 10000;
+        $taxable_salary = $salary -  $taxarray[0]['maxsalary'];
 
-        $tax = $taxable_salary * 0.2;
+        $tax = $taxable_salary *   $taxarray[1]['rate']   ;
 
         echo "taxable = " . $taxable_salary . " ";
         echo "tax = " . $tax . " ";
@@ -79,6 +89,17 @@ $json = file_get_contents($jsonfile);     // read contents into a variable
 
 $emparray = json_decode($json, true);      // convert to an array
 
+$jsontaxfile = 'data/tax-tables.json';  // location of file
+
+$taxjson = file_get_contents($jsontaxfile);     // read contents into a variable
+
+$taxarray = json_decode($taxjson, true);      // convert to an array
+
+
+
+
+
+// echo '<pre>'; print_r($taxarray); echo '</pre>';
 // echo '<pre>'; print_r($emparray); echo '</pre>';
 // debugging
 
