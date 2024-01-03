@@ -1,10 +1,17 @@
 
-<h1>Employees</h1>
+<h1>Payslip for...</h1>
 <?php
 opcache_reset();  // stop caching
 error_reporting(E_ALL);
 ini_set('display_errors', 1);    // this 1 / 0
 ini_set('display_startup_errors', 1);
+
+$empid = $_GET['id'];
+
+// echo "emp id = " . $empid;
+
+
+
 
 // read emp JSON into array
 // read tax tables JSON into array
@@ -105,6 +112,15 @@ $taxarray = json_decode($taxjson, true);      // convert to an array
 
 foreach($emparray as $value ) {
 
+
+    if ( $value['id'] != $empid  ) {
+
+        continue;
+         
+    }
+    
+   
+
     echo $value['lastname'] .  ' ';
 
     $salary = $value['salary'];
@@ -124,7 +140,6 @@ foreach($emparray as $value ) {
     
     echo " ::  the gross (take-home) pay is  " . $netsalary / 12;
 
-    echo ' <a href="thepayslip.php?id='. $value["id"] . '">click here.</a>';
 
 
     echo '<br><hr>';
